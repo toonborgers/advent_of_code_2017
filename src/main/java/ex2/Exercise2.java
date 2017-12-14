@@ -1,9 +1,9 @@
 package ex2;
 
-import java.util.ArrayList;
+import util.FileReader;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
@@ -42,14 +42,8 @@ public class Exercise2 {
     }
 
     private static List<List<Integer>> readInput(String file) {
-        List<List<Integer>> result = new ArrayList<>();
-
-        Scanner scanner = new Scanner(Exercise2.class.getResourceAsStream(file));
-
-        while (scanner.hasNextLine()) {
-            result.add(Arrays.stream(scanner.nextLine().split("\\s+")).map(Integer::parseInt).collect(toList()));
-        }
-
-        return result;
+        return FileReader.readFile(file, Exercise2.class).stream()
+                .map(line -> Arrays.stream(line.split("\\s+")).map(Integer::parseInt).collect(toList()))
+                .collect(toList());
     }
 }
