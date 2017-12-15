@@ -1,31 +1,37 @@
-package ex10;
-
-import util.FileReader;
+package ex14;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
-public class Exercise10Part2 {
-
-    private static final int INPUTS_LENGTH = 256;
-    private static final List<Integer> LENGTHS_TO_APPEND = Arrays.asList(17, 31, 73, 47, 23);
+public class Exercise14Part1 {
+    private static final String FORMAT = "%s-%s";
+    private static final String KEY = "wenycdww";
 
     public static void main(String[] args) {
-
-        System.out.println(calculateHash());
+        System.out.println(Arrays.stream(hashes().stream().collect(joining()).split("")).filter(s -> s.equals("1")).count());
     }
 
-    private static String calculateHash() {
-        List<Integer> lengths = getLengths();
-        lengths.addAll(LENGTHS_TO_APPEND);
+    private static List<String> hashes() {
+        return IntStream.range(0, 128).boxed()
+                .map(i -> String.format(FORMAT, KEY, i))
+                .map(Exercise14Part1::knotHash)
+                .collect(toList());
+    }
 
-        List<Integer> inputs = range(0, INPUTS_LENGTH).boxed().collect(toList());
+    private static String knotHash(String input) {
+        List<Integer> lengths = Arrays.stream(input.split(""))
+                .map(s -> ((int) s.charAt(0)))
+                .collect(toList());
+        lengths.addAll(Arrays.asList(17, 31, 73, 47, 23));
+
+        List<Integer> inputs = range(0, 256).boxed().collect(toList());
 
         int position = 0;
         int skipSize = 0;
@@ -37,11 +43,22 @@ public class Exercise10Part2 {
                 position += (length + skipSize++);
             }
         }
-        final List<Integer> sparse = new ArrayList<>(inputs);
 
+        final List<Integer> sparse = new ArrayList<>(inputs);
         return range(0, 16).boxed()
                 .map(i -> sparse.subList(i * 16, (i * 16) + 16).stream().reduce(0, (a, b) -> a ^ b))
                 .map(Integer::toHexString)
+                .map(s1 -> {
+                    if (s1.length() == 1) {
+                        return "0" + s1;
+                    }
+
+                    return s1;
+                })
+                .flatMap(s -> Arrays.stream(s.split("")))
+                .map(s -> Integer.toBinaryString(Integer.parseInt(s, 16)))
+                .map(Integer::parseInt)
+                .map(i -> String.format("%04d", i))
                 .collect(joining());
     }
 
@@ -64,13 +81,5 @@ public class Exercise10Part2 {
 
         Collections.reverse(result);
         return result;
-    }
-
-
-    private static List<Integer> getLengths() {
-        return Arrays.stream(FileReader.readFile("input1.txt", Exercise10Part2.class)
-                .get(0).split(""))
-                .map(s -> ((int) s.charAt(0)))
-                .collect(toList());
     }
 }
