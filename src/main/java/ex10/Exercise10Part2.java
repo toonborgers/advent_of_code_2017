@@ -68,7 +68,7 @@ public class Exercise10Part2 {
 
 
     private static List<Integer> getLengths() {
-        return Arrays.stream(FileReader.readFile("input1.txt", Exercise10Part2.class)
+        return Arrays.stream(FileReader.readFile("input.txt", Exercise10Part2.class)
                 .get(0).split(""))
                 .map(s -> ((int) s.charAt(0)))
                 .collect(toList());

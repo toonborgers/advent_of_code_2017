@@ -53,7 +53,7 @@ public class Exercise10Part1 {
 
 
     private static List<Integer> getLengths() {
-        return Arrays.stream(FileReader.readFile("input1.txt", Exercise10Part1.class)
+        return Arrays.stream(FileReader.readFile("input.txt", Exercise10Part1.class)
                 .get(0).split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
