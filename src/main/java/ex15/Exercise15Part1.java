@@ -2,7 +2,7 @@ package ex15;
 
 import java.math.BigInteger;
 
-public class Exercise15 {
+public class Exercise15Part1 {
     private static final BigInteger START_A = BigInteger.valueOf(116);
     private static final BigInteger START_B = BigInteger.valueOf(299);
 
