@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Exercise7 {
+public class Exercise7Part1 {
     private static final Pattern PROGRAM_PATTERN = Pattern.compile("([a-zA-Z]+).*->(.*)");
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class Exercise7 {
     }
 
     private static Map<String, List<String>> getInput(String filename) {
-        return FileReader.readFile(filename, Exercise7.class)
+        return FileReader.readFile(filename, Exercise7Part1.class)
                 .stream()
                 .filter(s -> s.contains("->"))
                 .map(s -> {
