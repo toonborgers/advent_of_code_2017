@@ -2,6 +2,7 @@ package ex1
 
 
 fun main(args: Array<String>) {
+    part1()
     part2()
 }
 
@@ -19,8 +20,5 @@ fun part2() {
 }
 
 private fun readInput(): List<Int> {
-    return FileReader.readFile("ex1/input.txt")
-            .split("")
-            .filter { it.isNotEmpty() }
-            .map { it.toInt() }
+    return FileReader.readFile("ex1/input.txt", "", { it.toInt() })
 }
