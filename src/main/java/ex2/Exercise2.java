@@ -14,7 +14,7 @@ public class Exercise2 {
     }
 
     private static void part2() {
-        System.out.println(readInput("input2.txt").stream()
+        System.out.println(readInput("input.txt").stream()
                 .mapToInt(row -> {
                     for (int i = 0; i < row.size() - 1; i++) {
                         for (int j = i + 1; j < row.size(); j++) {
@@ -34,7 +34,7 @@ public class Exercise2 {
     }
 
     private static void part1() {
-        System.out.println(readInput("input1.txt").stream()
+        System.out.println(readInput("input.txt").stream()
                 .map(i -> i.stream().mapToInt(item -> item))
                 .map(IntStream::summaryStatistics)
                 .mapToInt(stat -> stat.getMax() - stat.getMin())
