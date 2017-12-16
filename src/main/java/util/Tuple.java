@@ -1,6 +1,8 @@
 package util;
 
-public class Tuple<A,B> {
+import java.util.function.Function;
+
+public class Tuple<A, B> {
     private A a;
     private B b;
 
@@ -15,6 +17,10 @@ public class Tuple<A,B> {
 
     public B getB() {
         return b;
+    }
+
+    public <X, Y> Tuple<X, Y> map(Function<A, X> f1, Function<B, Y> f2) {
+        return new Tuple<>(f1.apply(a), f2.apply(b));
     }
 
     @Override
