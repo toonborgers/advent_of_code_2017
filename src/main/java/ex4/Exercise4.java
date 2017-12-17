@@ -17,7 +17,7 @@ public class Exercise4 {
     }
 
     private static void part2() {
-        System.out.println(readInput("input2.txt")
+        System.out.println(readInput("input.txt")
                 .map(list -> list.stream()
                         .map(str -> Arrays.stream(str.split("")).sorted().collect(Collectors.joining()))
                         .collect(Collectors.toList()))
@@ -26,7 +26,7 @@ public class Exercise4 {
     }
 
     private static void part1() {
-        System.out.println(readInput("input1.txt")
+        System.out.println(readInput("input.txt")
                 .filter(hasNoDuplicates)
                 .count());
     }

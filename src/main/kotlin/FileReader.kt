@@ -13,11 +13,21 @@ class FileReader {
         }
 
         fun readLines(name: String): List<String> {
-            return readFile(name).split("\n")
+            return readFile(name, "\n")
+        }
+
+        fun readLines(name: String, splitChar: String): List<List<String>> {
+            return readLines(name)
+                    .map { it.split(splitChar) }
         }
 
         fun <T> readLines(name: String, mapper: (m: String) -> T): List<T> {
-            return readFile(name, "\n").map(mapper)
+            return readLines(name).map(mapper)
+        }
+
+        fun <T> readLines(name: String, splitChar: String, mapper: (m: String) -> T): List<List<T>> {
+            return readLines(name)
+                    .map { it.split(splitChar).map(mapper) }
         }
     }
 }
