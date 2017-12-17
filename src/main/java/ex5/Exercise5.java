@@ -12,7 +12,7 @@ public class Exercise5 {
     }
 
     private static void part2() {
-        List<Integer> maze = getInput("input2.txt");
+        List<Integer> maze = getInput("input.txt");
         int index = 0;
         int steps = 0;
 
@@ -34,7 +34,7 @@ public class Exercise5 {
     }
 
     private static void part1() {
-        List<Integer> maze = getInput("input1.txt");
+        List<Integer> maze = getInput("input.txt");
         int index = 0;
         int steps = 0;
 
