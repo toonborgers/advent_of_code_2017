@@ -39,6 +39,7 @@ public class Exercise3 {
             Point point = new Point(x, y);
             value = sumOfSurrounding(point, pointsToValues);
             pointsToValues.put(point, value);
+            System.out.println(value);
         }
 
 
