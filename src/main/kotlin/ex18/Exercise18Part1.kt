@@ -1,12 +1,11 @@
 package ex18
 
 import FileReader
+import java.math.BigInteger
 import kotlin.system.exitProcess
 
-
-val registers = mapOf<String, Int>().toMutableMap()
-var last = -1
-
+private val registers = mapOf<String, BigInteger>().toMutableMap()
+private val sounds = listOf<BigInteger>().toMutableList()
 fun main(args: Array<String>) {
     val input = FileReader.readLines("ex18/input.txt")
     var index = 0
@@ -18,15 +17,15 @@ fun main(args: Array<String>) {
         if (isArithmetic(operation)) {
             handleArithmetic(operation)
         } else if (operation[0] == "snd") {
-            last = value(operation[1])
+            sounds.add(value(operation[1]))
         } else if (operation[0] == "rcv") {
-            if (value(operation[1]) != 0) {
-                println(last)
+            if (value(operation[1]) != BigInteger.ZERO) {
+                println(sounds.last())
                 exitProcess(0)
             }
         } else if (operation[0] == "jgz") {
-            if (value(operation[1]) > 0) {
-                addToIndex = value(operation[2])
+            if (value(operation[1]) > BigInteger.ZERO) {
+                addToIndex = value(operation[2]).toInt()
             }
         }
 
@@ -47,10 +46,10 @@ private fun isArithmetic(line: List<String>): Boolean {
     return listOf("set", "add", "mul", "mod").contains(line[0])
 }
 
-private fun value(input: String): Int {
+private fun value(input: String): BigInteger {
     return try {
-        input.trim().toInt()
+        BigInteger.valueOf(input.trim().toLong())
     } catch (e: Exception) {
-        registers.getOrDefault(input.trim(), 0)
+        registers.getOrDefault(input.trim(), BigInteger.ZERO)
     }
 }
