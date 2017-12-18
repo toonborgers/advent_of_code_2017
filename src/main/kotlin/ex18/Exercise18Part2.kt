@@ -17,13 +17,8 @@ fun main(args: Array<String>) {
 
     val stopwatch = Stopwatch.createStarted()
     while (!((program0.allInstructionsProcessed() && program1.allInstructionsProcessed()) || (program0.inDeadlock() && program1.inDeadlock()))) {
-        while (!program0.allInstructionsProcessed() && !program0.inDeadlock()) {
-            program0.run()
-        }
-
-        while (!program1.allInstructionsProcessed() && !program1.inDeadlock()) {
-            program1.run()
-        }
+        program0.run()
+        program1.run()
     }
 
     println(stopwatch)
@@ -33,7 +28,7 @@ fun main(args: Array<String>) {
 
 class Program(id: BigInteger, private val instructions: List<List<String>>) {
     private val registers = mapOf<String, BigInteger>().toMutableMap()
-    private val received:Queue<BigInteger> = ArrayDeque<BigInteger>()
+    private val received: Queue<BigInteger> = ArrayDeque<BigInteger>()
     private var index = 0
     var other: Program? = null
     var sentMessages = 0
@@ -42,33 +37,35 @@ class Program(id: BigInteger, private val instructions: List<List<String>>) {
         registers.put("p", id)
     }
 
-
-    fun receive(value: BigInteger) {
+    private fun receive(value: BigInteger) {
         received.add(value)
     }
 
-    fun sendToOther(value: BigInteger) {
+    private fun sendToOther(value: BigInteger) {
         sentMessages++
         other?.receive(value)
     }
 
     fun run() {
-        val operation = instructions[index]
-        var addToIndex = 1
+        while (!allInstructionsProcessed() && !inDeadlock()) {
+            val operation = instructions[index]
+            var addToIndex = 1
 
-        if (isArithmetic(operation)) {
-            handleArithmetic(operation)
-        } else if (operation[0] == "snd") {
-            sendToOther(value(operation[1]))
-        } else if (operation[0] == "rcv") {
-            registers.put(operation[1], received.poll())
-        } else if (operation[0] == "jgz") {
-            if (value(operation[1]) > BigInteger.ZERO) {
-                addToIndex = value(operation[2]).toInt()
+            if (isArithmetic(operation)) {
+                handleArithmetic(operation)
+            } else if (operation[0] == "snd") {
+                sendToOther(value(operation[1]))
+            } else if (operation[0] == "rcv") {
+                registers.put(operation[1], received.poll())
+            } else if (operation[0] == "jgz") {
+                if (value(operation[1]) > BigInteger.ZERO) {
+                    addToIndex = value(operation[2]).toInt()
+                }
             }
-        }
 
-        index += addToIndex
+            index += addToIndex
+
+        }
     }
 
     fun allInstructionsProcessed(): Boolean = index < 0 || index >= instructions.size
