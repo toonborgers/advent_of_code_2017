@@ -20,7 +20,7 @@ public class Exercise7Part2 {
     private static final Map<String, List<String>> INPUTS = new HashMap<>();
 
     static {
-        FileReader.readFile("input.txt", Exercise7Part2.class).forEach(line -> {
+        FileReader.readLines("input.txt", Exercise7Part2.class).forEach(line -> {
             Matcher programNameMatcher = PROGRAM_NAME_PATTERN.matcher(line);
             programNameMatcher.find();
             WEIGHTS.put(programNameMatcher.group(1), parseInt(programNameMatcher.group(2)));

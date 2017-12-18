@@ -3,7 +3,6 @@ package ex16;
 import util.FileReader;
 import util.Tuple;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,9 +77,6 @@ public class Exercise16Part2 {
     }
 
     private static List<String> readInput() {
-        return Arrays.asList(FileReader.readFile("input.txt", Exercise16Part2.class)
-                .get(0).split(","));
+        return FileReader.readFile("input.txt", Exercise16.class, ",");
     }
-
-
 }

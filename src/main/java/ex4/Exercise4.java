@@ -17,7 +17,7 @@ public class Exercise4 {
     }
 
     private static void part2() {
-        System.out.println(readInput("input.txt")
+        System.out.println(readInput()
                 .map(list -> list.stream()
                         .map(str -> Arrays.stream(str.split("")).sorted().collect(Collectors.joining()))
                         .collect(Collectors.toList()))
@@ -26,15 +26,14 @@ public class Exercise4 {
     }
 
     private static void part1() {
-        System.out.println(readInput("input.txt")
+        System.out.println(readInput()
                 .filter(hasNoDuplicates)
                 .count());
     }
 
     private static Predicate<List<String>> hasNoDuplicates = l -> l.size() == new HashSet<>(l).size();
 
-    private static Stream<List<String>> readInput(String file) {
-        return FileReader.readFile(file, Exercise4.class).stream()
-                .map(s -> Arrays.asList(s.split("\\s+")));
+    private static Stream<List<String>> readInput() {
+        return FileReader.readLines("input.txt", Exercise4.class, "\\s+").stream();
     }
 }

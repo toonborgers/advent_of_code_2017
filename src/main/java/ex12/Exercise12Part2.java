@@ -48,7 +48,7 @@ public class Exercise12Part2 {
     }
 
     private static Map<Integer, List<Integer>> readInput() {
-        return FileReader.readFile("input.txt", Exercise12Part2.class).stream()
+        return FileReader.readLines("input.txt", Exercise12Part2.class).stream()
                 .map(l -> l.split("<->"))
                 .collect(toMap(
                         arr -> parseInt(arr[0].trim()),

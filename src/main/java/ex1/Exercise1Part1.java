@@ -1,9 +1,7 @@
 package ex1;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
 import static util.FileReader.readFile;
 
 public class Exercise1Part1 {
@@ -21,8 +19,6 @@ public class Exercise1Part1 {
     }
 
     private static List<Integer> readInput() {
-        return Arrays.stream(readFile("input.txt", Exercise1Part1.class).get(0).split(""))
-                .map(Integer::parseInt)
-                .collect(toList());
+        return readFile("input.txt", Exercise1Part1.class, "", Integer::parseInt);
     }
 }

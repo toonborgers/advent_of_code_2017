@@ -31,7 +31,7 @@ public class Exercise13Part1 {
 
 
     private static Map<Integer, Layer> readInput() {
-        return FileReader.readFile("input.txt", Exercise13Part1.class).stream()
+        return FileReader.readLines("input.txt", Exercise13Part1.class).stream()
                 .map(s -> stream(s.split(":")).map(String::trim).map(Integer::parseInt).collect(toList()))
                 .collect(toMap(l -> l.get(0), l -> new Layer(l.get(1))));
     }

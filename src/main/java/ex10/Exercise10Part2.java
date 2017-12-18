@@ -66,11 +66,7 @@ public class Exercise10Part2 {
         return result;
     }
 
-
     private static List<Integer> getLengths() {
-        return Arrays.stream(FileReader.readFile("input.txt", Exercise10Part2.class)
-                .get(0).split(""))
-                .map(s -> ((int) s.charAt(0)))
-                .collect(toList());
+        return FileReader.readFile("input.txt", Exercise10Part1.class, ",", Integer::parseInt);
     }
 }

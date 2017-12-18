@@ -3,7 +3,6 @@ package ex5;
 import util.FileReader;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Exercise5 {
     public static void main(String[] args) {
@@ -12,7 +11,7 @@ public class Exercise5 {
     }
 
     private static void part2() {
-        List<Integer> maze = getInput("input.txt");
+        List<Integer> maze = getInput();
         int index = 0;
         int steps = 0;
 
@@ -34,7 +33,7 @@ public class Exercise5 {
     }
 
     private static void part1() {
-        List<Integer> maze = getInput("input.txt");
+        List<Integer> maze = getInput();
         int index = 0;
         int steps = 0;
 
@@ -48,9 +47,7 @@ public class Exercise5 {
         System.out.println(steps);
     }
 
-    private static List<Integer> getInput(String filename) {
-        return FileReader.readFile(filename, Exercise5.class)
-                .stream().map(Integer::parseInt)
-                .collect(Collectors.toList());
+    private static List<Integer> getInput() {
+        return FileReader.readLines("input.txt", Exercise5.class, Integer::parseInt);
     }
 }

@@ -15,7 +15,7 @@ final class Exercise8Joined {
     }
 
     static List<Instruction> determineInstructions() {
-        return FileReader.readFile("input.txt", Exercise8Joined.class).stream()
+        return FileReader.readLines("input.txt", Exercise8Joined.class).stream()
                 .map(Instruction::fromLine)
                 .collect(Collectors.toList());
     }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
-import static util.FileReader.readFile;
+import static util.FileReader.readLines;
 
 public class Exercise1Part2 {
 
@@ -22,7 +22,7 @@ public class Exercise1Part2 {
     }
 
     private static List<Integer> readInput() {
-        return Arrays.stream(readFile("input.txt", Exercise1Part2.class).get(0).split(""))
+        return Arrays.stream(readLines("input.txt", Exercise1Part2.class).get(0).split(""))
                 .map(Integer::parseInt)
                 .collect(toList());
     }

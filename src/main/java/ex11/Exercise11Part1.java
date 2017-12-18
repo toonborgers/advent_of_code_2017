@@ -2,7 +2,6 @@ package ex11;
 
 import util.FileReader;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Exercise11Part1 {
@@ -48,9 +47,7 @@ public class Exercise11Part1 {
     }
 
     private static List<String> readInput() {
-        return Arrays.asList(FileReader.readFile("input.txt", Exercise11Part1.class)
-                .get(0).split(","));
-
+       return  FileReader.readFile("input.txt", Exercise11Part1.class,",");
     }
 
     private static class Point {

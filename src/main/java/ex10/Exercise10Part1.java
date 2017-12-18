@@ -3,7 +3,6 @@ package ex10;
 import util.FileReader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,10 +52,6 @@ public class Exercise10Part1 {
 
 
     private static List<Integer> getLengths() {
-        return Arrays.stream(FileReader.readFile("input.txt", Exercise10Part1.class)
-                .get(0).split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        return FileReader.readFile("input.txt", Exercise10Part1.class, ",", Integer::parseInt);
     }
 }

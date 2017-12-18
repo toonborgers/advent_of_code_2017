@@ -3,7 +3,6 @@ package ex6;
 import util.FileReader;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Exercise6 {
     public static void main(String[] args) {
@@ -13,7 +12,7 @@ public class Exercise6 {
 
     private static void part1() {
         Set<List<Integer>> states = new HashSet<>();
-        List<Integer> state = getInput("input.txt");
+        List<Integer> state = getInput();
         int steps = 0;
 
         while (states.add(new ArrayList<>(state))) {
@@ -35,7 +34,7 @@ public class Exercise6 {
 
     private static void part2() {
         List<List<Integer>> states = new ArrayList<>();
-        List<Integer> state = getInput("input.txt");
+        List<Integer> state = getInput();
         int steps = 0;
 
 
@@ -66,10 +65,7 @@ public class Exercise6 {
 
     }
 
-    private static List<Integer> getInput(String filename) {
-        return Arrays.stream(FileReader.readFile(filename, Exercise6.class)
-                .get(0).split("\\s+"))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+    private static List<Integer> getInput() {
+        return FileReader.readFile("input.txt", Exercise6.class, "\\s+", Integer::parseInt);
     }
 }

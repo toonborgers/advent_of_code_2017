@@ -54,6 +54,6 @@ public class Exercise9Part1 {
     }
 
     private static String readInput() {
-        return FileReader.readFile("input.txt", Exercise9Part1.class).get(0);
+        return FileReader.readFile("input.txt", Exercise9Part1.class);
     }
 }

@@ -26,7 +26,7 @@ public class Exercise7Part1 {
     }
 
     private static Map<String, List<String>> getInput(String filename) {
-        return FileReader.readFile(filename, Exercise7Part1.class)
+        return FileReader.readLines(filename, Exercise7Part1.class)
                 .stream()
                 .filter(s -> s.contains("->"))
                 .map(s -> {
