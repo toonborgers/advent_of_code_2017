@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 
 public class Exercise6 {
     public static void main(String[] args) {
-//        part1();
-        part2();
+        part1();
+//        part2();
     }
 
     private static void part1() {
         Set<List<Integer>> states = new HashSet<>();
-        List<Integer> state = getInput("input1.txt");
+        List<Integer> state = getInput("input.txt");
         int steps = 0;
 
         while (states.add(new ArrayList<>(state))) {
@@ -35,7 +35,7 @@ public class Exercise6 {
 
     private static void part2() {
         List<List<Integer>> states = new ArrayList<>();
-        List<Integer> state = getInput("input2.txt");
+        List<Integer> state = getInput("input.txt");
         int steps = 0;
 
 

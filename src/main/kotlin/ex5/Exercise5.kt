@@ -43,4 +43,4 @@ private fun part1() {
     println(steps)
 }
 
-private fun maze() = ArrayList(FileReader.readLines("ex5/input.txt", { it.toInt() }))
+private fun maze() = FileReader.readLines("ex5/input.txt", { it.toInt() })
